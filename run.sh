@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git pull origin main
+
 TARGET_PORT=5000
 
 TARGET_PID=$(lsof -Fp -i TCP:${TARGET_PORT} | grep -Po 'p[0-9]+' | grep -Po '[0-9]+')

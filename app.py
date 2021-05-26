@@ -23,17 +23,11 @@ def predict():
     img_batch = np.expand_dims(image, axis=0)
     img_preprocessed = tf.keras.applications.efficientnet.preprocess_input(img_batch)
     prediction = model.predict(img_preprocessed)
-    idx = prediction[0].argmax()
+    best_3 = np.argsort(prediction, axis=1)[:, -3:]
 
-    ### 결과값을 정의해서 리턴하면 댐 난 그냥 짜장면 나오게 햇삼
-    return labels[idx]
+    result = [labels[y] for y in best_3[0]][::-1]
 
-    """return jsonify(
-        {'data': {
-            'name': food_name
-        }
-    })"""
-
+    return jsonify({'data': result})
 
 if __name__ == '__main__':
     ### 모델 로드하는거

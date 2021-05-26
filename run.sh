@@ -14,6 +14,6 @@ if [ ! -z ${TARGET_PID} ]; then
   sudo kill ${TARGET_PID}
 fi
 
-nohup python app.py > /home/ubuntu/nohup_flask.out 2>&1 &
+nohup python3 app.py > /home/ubuntu/nohup_flask.out 2>&1 &
 echo "> Now new WAS runs at ${TARGET_PORT}."
 exit 0

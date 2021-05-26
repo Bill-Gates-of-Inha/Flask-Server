@@ -2,7 +2,8 @@
 
 git pull origin main
 
-pip install -r requirements.txt
+pip3 install --upgrade pip
+pip3 install -r requirements.txt
 
 TARGET_PORT=5000
 
@@ -11,11 +12,6 @@ TARGET_PID=$(lsof -Fp -i TCP:${TARGET_PORT} | grep -Po 'p[0-9]+' | grep -Po '[0-
 if [ ! -z ${TARGET_PID} ]; then
   echo "> Kill WAS running at ${TARGET_PORT}."
   sudo kill ${TARGET_PID}
-fi
-
-if [ ! -z ${TARGET_PID2} ]; then
-  echo "> Kill WAS running at ${TARGET_PORT2}."
-  sudo kill ${TARGET_PID2}
 fi
 
 nohup python app.py > /home/ubuntu/nohup_flask.out 2>&1 &

@@ -34,4 +34,4 @@ if __name__ == '__main__':
     model = load_model('./model/Food_Classifier.h5')
     ### 레이블화 된거를 list로 불러오기
     labels = open("./model/labels.txt", 'r').read().split('\n')
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)

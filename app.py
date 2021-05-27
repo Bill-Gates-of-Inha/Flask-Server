@@ -6,7 +6,7 @@ import numpy as np
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def hello_jiyong():
     return 'hello_jiyong'
 

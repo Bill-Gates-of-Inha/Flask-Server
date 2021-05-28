@@ -2,17 +2,16 @@ from flask import Flask, request, jsonify
 from tensorflow.keras.models import load_model
 from PIL import Image
 import tensorflow as tf
-import os
 import numpy as np
 
-model = load_model(os.getcwd()+'/model/Food_Classifier.h5')
-app = Flask(__name__)
-labels = open(os.getcwd() + "/model/labels.txt", 'r').read().split('\n')
 
+app = Flask(__name__)
+model = None
+labels = None
 
 @app.route('/', methods=['GET'])
 def hello_jiyong():
-    return os.getcwd()
+    return "hello jiyong"
 
 ##메소드는 post 로 사진을 body에 담을꺼임
 @app.route('/predict', methods=['POST'])
@@ -32,6 +31,13 @@ def predict():
     result = [labels[y] for y in best_3[0]][::-1]
 
     return jsonify({'data': result})
+
+def load_model():
+    global model
+    global labels
+
+    model = load_model('./model/Food_Classifier.h5')
+    labels = open("./model/labels.txt", 'r').read().split('\n')
 
 if __name__ == '__main__':
     ### 모델 로드하는거

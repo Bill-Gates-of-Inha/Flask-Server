@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello_jiyong():
-    return 'hello_jiyong'
+    return os.getcwd()
 
 ##메소드는 post 로 사진을 body에 담을꺼임
 @app.route('/predict', methods=['POST'])

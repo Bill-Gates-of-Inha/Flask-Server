@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from tensorflow.keras.models import load_model
 from PIL import Image
 import tensorflow as tf
+import os
 import numpy as np
 app = Flask(__name__)
 
@@ -30,8 +31,9 @@ def predict():
     return jsonify({'data': result})
 
 if __name__ == '__main__':
+    print(os.getcwd())
     ### 모델 로드하는거
-    model = load_model('./model/Food_Classifier.h5')
+    model = load_model(os.getcwd()+'/model/Food_Classifier.h5')
     ### 레이블화 된거를 list로 불러오기
-    labels = open("./model/labels.txt", 'r').read().split('\n')
+    labels = open(os.getcwd()+"/model/labels.txt", 'r').read().split('\n')
     app.run(host='0.0.0.0', debug=True)

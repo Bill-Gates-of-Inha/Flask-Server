@@ -32,7 +32,7 @@ def predict():
 
     return jsonify({'data': result})
 
-def load_model():
+def load_model_to_app():
     global model
     global labels
 

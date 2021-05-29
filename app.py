@@ -3,11 +3,12 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 import tensorflow as tf
 import numpy as np
-
+import logging
 
 app = Flask(__name__)
 model = None
 labels = None
+logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 @app.route('/', methods=['GET'])
 def hello_jiyong():

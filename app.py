@@ -20,6 +20,8 @@ def hello_jiyong():
 def predict():
     ###body에 담긴 이미지를 가져오는것 multi-part/form-data
     file = request.files['file']
+
+    logging.getLogger().info(file.filename)
     ###file 이 FileStorage 타입이라 PIL 타입으로 변경해야함 그리구 리사이징도 함께
     image = Image.open(file)
     image = image.resize((224, 224))
@@ -31,8 +33,6 @@ def predict():
     best_3 = np.argsort(prediction, axis=1)[:, -3:]
 
     result = [labels[y] for y in best_3[0]][::-1]
-
-    logging.getLogger().info(result)
 
     return jsonify({'data': result})
 

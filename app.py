@@ -31,6 +31,8 @@ def predict():
 
     result = [labels[y] for y in best_3[0]][::-1]
 
+    print(result)
+
     return jsonify({'data': result})
 
 def load_model_to_app():

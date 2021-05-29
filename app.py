@@ -6,6 +6,7 @@ import numpy as np
 import logging
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 model = None
 labels = None
 logging.basicConfig(filename='app.log', level=logging.DEBUG)

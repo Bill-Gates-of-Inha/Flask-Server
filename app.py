@@ -31,7 +31,7 @@ def predict():
 
     result = [labels[y] for y in best_3[0]][::-1]
 
-    print(result)
+    logging.getLogger().info(result)
 
     return jsonify({'data': result})
 

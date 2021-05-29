@@ -33,6 +33,7 @@ def predict():
     best_3 = np.argsort(prediction, axis=1)[:, -3:]
 
     result = [labels[y] for y in best_3[0]][::-1]
+    logging.getLogger().info(result)
 
     return jsonify({'data': result})
 
